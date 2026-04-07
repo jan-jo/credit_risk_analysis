@@ -56,9 +56,9 @@ df = df.withColumn(
 )
 
 df.groupBy("RiskLevel").count().show()
-#risk distribution by demographics
+
 df.groupBy("Sex", "RiskLevel").count().show()
 df.groupBy("Housing", "RiskLevel").count().show()
-#save output
+
 df.write.mode("overwrite").csv("output/credit_risk_analysis_results")
 print(" Results saved")

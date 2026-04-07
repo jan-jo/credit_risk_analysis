@@ -1,29 +1,29 @@
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import col, count, when, avg
 
-# 1️⃣ Create Spark Session
+# Create Spark Session
 spark = SparkSession.builder \
     .appName("GermanCreditRiskAnalysis") \
     .getOrCreate()
 
-print("✅ Spark Session Created")
+print(" Spark Session Created")
 
-# 2️⃣ Load Dataset
+# Load Dataset
 df = spark.read.csv(
     "data/german_credit_dataset.csv",
     header=True,
     inferSchema=True
 )
 
-print("✅ Dataset Loaded")
+print(" Dataset Loaded")
 
 df.printSchema()
 df.show(5)
-# 3️⃣ Data Exploration
-print("📊 Basic Statistics")
+#  Data Exploration
+print("Basic Statistics")
 df.describe().show()
 # missing values check
-print("📊 Basic Statistics")
+print(" Basic Statistics")
 df.describe().show()
 #credit risk domain analysis
 df.groupBy("Job") \
@@ -61,4 +61,4 @@ df.groupBy("Sex", "RiskLevel").count().show()
 df.groupBy("Housing", "RiskLevel").count().show()
 #save output
 df.write.mode("overwrite").csv("output/credit_risk_analysis_results")
-print("✅ Results saved")
+print(" Results saved")
